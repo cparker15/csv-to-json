@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<title>CSV to JSON</title>
+		
+		<style type="text/css">
+			.error { font-weight: bold; color: #F00; }
+		</style>
+		
+		<script type="text/javascript">
+			function parseCSVLine (line)
+			{
+				line = line.split(',');
+				
+				// check for splits performed inside quoted strings and correct if needed
+				for (var i = 0; i < line.length; i++)
+				{
+					var chunk = line[i].replace(/^[\s]*|[\s]*$/g, '');
+					var quote = "";
+					if (chunk.charAt(0) == '"' || chunk.charAt(0) == "'") quote = chunk.charAt(0);
+					if (quote != "" && chunk.charAt(chunk.length - 1) == quote) quote = "";
+					
+					if (quote != "")
+					{
+						var j = i + 1;
+						
+						if (j < line.length) chunk = line[j].replace(/^[\s]*|[\s]*$/g, '');
+						
+						while (j < line.length && chunk.charAt(chunk.length - 1) != quote)
+						{
+							line[i] += ',' + line[j];
+							line.splice(j, 1);
+							chunk = line[j].replace(/[\s]*$/g, '');
+						}
+						
+						if (j < line.length)
+						{
+							line[i] += ',' + line[j];
+							line.splice(j, 1);
+						}
+					}
+				}
+				
+				// remove leading/trailing whitespace
+				for (var i = 0; i < line.length; i++)
+				{
+					line[i] = line[i].replace(/^[\s]*|[\s]*$/g, '');
+				}
+				
+				return line;
+			}
+			
+			function csvToJson ()
+			{
+				var message = "";
+				var error = false;
+				var f = document.forms["convertForm"];
+				var csvText = f.elements["csv"].value;
+				var objArr = [];
+				var jsonText = "";
+				
+				document.getElementById("message").className = "";
+				
+				if (csvText == "") { error = true; message = "Please paste CSV text."; }
+				
+				if (!error)
+				{
+					var csvRows = csvText.split(/[\r\n]/g); // split into rows
+					
+					if (csvRows.length < 2) { error = true; message = "CSV text MUST have a header row!"; }
+					else
+					{
+						for (var i = 0; i < csvRows.length; i++)
+						{
+							csvRows[i] = parseCSVLine(csvRows[i]);
+						}
+						
+						for (var i = 1; i < csvRows.length; i++)
+						{
+							if (csvRows[i].length > 0) objArr.push({});
+							
+							for (var j = 0; j < csvRows[i].length; j++)
+							{
+								objArr[i - 1][csvRows[0][j]] = csvRows[i][j];
+							}
+						}
+						
+						jsonText += "[\n";
+						for (var i = 0; i < objArr.length; i++)
+						{
+							jsonText += "\t{";
+							
+							var first = true;
+							for (var j in objArr[i])
+							{
+								if (first) first = false;
+								else jsonText += ',';
+								
+								jsonText += "\n\t\t" + '"' + j + '": ';
+								
+								if (typeof objArr[i][j] == "string" && objArr[i][j].charAt(0) != '"') jsonText += '"';
+								
+								jsonText += (typeof objArr[i][j] != "undefined" ? objArr[i][j] : '""');
+								
+								if (typeof objArr[i][j] == "string" && objArr[i][j].charAt(0) != '"') jsonText += '"';
+							}
+							
+							jsonText += "\n\t}";
+							if (i < objArr.length - 1) jsonText += ','
+							jsonText += "\n";
+						}
+						jsonText += ']';
+						
+						f.elements["json"].value = jsonText;
+						message = "CSV converted to JSON.";
+					}
+				}
+				
+				document.getElementById("message").innerHTML = '<p>' + message + '</p>';
+				
+				if (error) document.getElementById("message").className = "error";
+			}
+		</script>
+	</head>
+	<body>
+		<h1>CSV to JSON</h1>
+		
+		<p>This utility converts CSV text to JSON text.</p>
+		
+		<p>Notes:</p>
+		
+		<ul>
+			<li>The CSV text MUST have a header row.</li>
+			<li>Quoted strings must be quoted with double-quotes: &quot;</li>
+		</ul>
+		
+		<div id="message"></div>
+		
+		<form id="convertForm" name="convertForm" onsubmit="return false; ">
+			<label for="csv">CSV:</label><br /><textarea id="csv" name="csv" rows="10" cols="60"></textarea><br /><br />
+			
+			<label for="json">JSON:</label><br /><textarea id="json" name="json" rows="10" cols="60"></textarea><br /><br />
+			
+			<input type="button" value="Convert" onclick="csvToJson(); " /> <input type="reset" />
+		</form>
+	</body>
+</html>

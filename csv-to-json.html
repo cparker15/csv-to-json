@@ -21,6 +21,12 @@
 			var csvRows = []; var objArr = [];
 			var benchmarkStart, benchmarkParseEnd, benchmarkObjEnd, benchmarkJsonEnd, benchmarkPopulateEnd;
 			
+			function setMessage (message, error)
+			{
+				document.getElementById("message").innerHTML = '<p>' + message + '</p>';
+				if (error) document.getElementById("message").className = "error";
+			}
+			
 			function parseCSVLine (line)
 			{
 				line = line.split(',');
@@ -75,7 +81,7 @@
 				var csvText = f.elements["csv"].value;
 				var jsonText = "";
 				
-				document.getElementById("message").className = "";
+				setMessage(message, error);
 				
 				if (csvText == "") { error = true; message = "Enter CSV text below."; }
 				
@@ -130,8 +136,7 @@
 					}
 				}
 				
-				document.getElementById("message").innerHTML = '<p>' + message + '</p>';
-				if (error) document.getElementById("message").className = "error";
+				setMessage(message, error);
 			}
 			
 			function getBenchmarkResults ()

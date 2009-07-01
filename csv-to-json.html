@@ -70,6 +70,16 @@
 				{
 					var csvRows = csvText.split(/[\r\n]/g); // split into rows
 					
+					// get rid of empty rows
+					for (var i = 0; i < csvRows.length; i++)
+					{
+						if (csvRows[i].replace(/^[\s]*|[\s]*$/g, '') == "")
+						{
+							csvRows.splice(i, 1);
+							i--;
+						}
+					}
+					
 					if (csvRows.length < 2) { error = true; message = "CSV text MUST have a header row!"; }
 					else
 					{

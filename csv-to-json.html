@@ -111,11 +111,11 @@
 								
 								jsonText += "\n\t\t" + '"' + j + '": ';
 								
-								if (typeof objArr[i][j] == "string" && objArr[i][j].charAt(0) != '"') jsonText += '"';
+								if (typeof objArr[i][j] == "string" && objArr[i][j].charAt(0) != '"' && objArr[i][j].charAt(0) != "'") jsonText += '"';
 								
 								jsonText += (typeof objArr[i][j] != "undefined" ? objArr[i][j] : '""');
 								
-								if (typeof objArr[i][j] == "string" && objArr[i][j].charAt(0) != '"') jsonText += '"';
+								if (typeof objArr[i][j] == "string" && objArr[i][j].charAt(0) != '"' && objArr[i][j].charAt(0) != "'") jsonText += '"';
 							}
 							
 							jsonText += "\n\t}";
@@ -144,7 +144,7 @@
 		
 		<ul>
 			<li>The CSV text MUST have a header row.</li>
-			<li>Quoted strings must be quoted with double-quotes: &quot;</li>
+			<li>This utility does not currently check for escaped quotes inside of like quotes (e.g.: <code>"foo, \"bar\" baz"</code>)</li>
 		</ul>
 		
 		<div id="message"></div>

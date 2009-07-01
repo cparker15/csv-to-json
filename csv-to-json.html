@@ -64,7 +64,7 @@
 				
 				document.getElementById("message").className = "";
 				
-				if (csvText == "") { error = true; message = "Please paste CSV text."; }
+				if (csvText == "") { error = true; message = "Enter CSV text below."; }
 				
 				if (!error)
 				{
@@ -80,7 +80,7 @@
 						}
 					}
 					
-					if (csvRows.length < 2) { error = true; message = "CSV text MUST have a header row!"; }
+					if (csvRows.length < 2) { error = true; message = "The CSV text MUST have a header row!"; }
 					else
 					{
 						for (var i = 0; i < csvRows.length; i++)
@@ -125,7 +125,7 @@
 						jsonText += ']';
 						
 						f.elements["json"].value = jsonText;
-						message = "CSV converted to JSON.";
+						message = "";
 					}
 				}
 				
@@ -147,7 +147,7 @@
 			<li>This utility does not currently check for escaped quotes inside of like quotes (e.g.: <code>"foo, \"bar\" baz"</code>)</li>
 		</ul>
 		
-		<div id="message"></div>
+		<div id="message"><p></p></div>
 		
 		<form id="convertForm" name="convertForm" onsubmit="return false; ">
 			<label for="csv">CSV:</label><br /><textarea id="csv" name="csv" rows="10" cols="60"></textarea><br /><br />

@@ -24,7 +24,11 @@
 			function setMessage (message, error)
 			{
 				document.getElementById("message").innerHTML = '<p>' + message + '</p>';
-				if (error) document.getElementById("message").className = "error";
+				
+				if (error)
+					document.getElementById("message").className = "error";
+				else
+					document.getElementById("message").className = "";
 			}
 			
 			function parseCSVLine (line)

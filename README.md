@@ -10,7 +10,7 @@ Important Note
 
 This repository includes [Douglas Crockford][github-douglascrockford]'s [JSON JavaScript library][github-json-js] as a Git submodule. When cloning this repository, you must issue all of the following commands to pull in the JSON library, too:
 
-    $ git clone git://github.com/cparker15/csv-to-json.git
+    $ git clone http://github.com/cparker15/csv-to-json.git
     $ cd csv-to-json
     $ git submodule init
     $ git submodule update

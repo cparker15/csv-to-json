@@ -1,3 +1,3 @@
-[submodule "json"]
-	path = json
+[submodule "src/js/json"]
+	path = src/js/json
 	url = http://github.com/douglascrockford/JSON-js.git

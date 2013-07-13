@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<!--
+ * csv-to-json: A utility that converts data format from CSV to JSON.
+ * Copyright (C) 2009-2013 Christopher Parker <http://www.cparker15.com/>
+ *
+ * csv-to-json is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * csv-to-json is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with csv-to-json.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>CSV to JSON</title>
+
+        <style>
+            .error { font-weight: bold; color: #F00; }
+        </style>
+
+        <script src="js/json/json2.js"> </script>
+        <script src="js/csv/csv.js"> </script>
+        <script src="js/csv-to-json.js"> </script>
+    </head>
+    <body>
+        <p>Notes:</p>
+
+        <ul>
+            <li>The <acronym title="comma-separated values">CSV</acronym> text <strong style="text-transform: uppercase; ">must</strong> have a header row.</li>
+            <li>This utility does not currently check for escaped quotes inside of like quotes (e.g.: <code>"foo, \"bar\" baz"</code>).</li>
+        </ul>
+
+        <hr noshade="noshade" />
+
+        <div id="message"><p>Enter CSV text below.</p></div>
+
+        <form id="convertForm" name="convertForm">
+            <label for="csv"><acronym title="comma-separated values">CSV</acronym>:</label><br />
+            <textarea id="csv" name="csv" rows="10" cols="60"></textarea><br /><br />
+
+            <label for="json"><acronym title="JavaScript Object Notation">JSON</acronym>:</label><br />
+            <textarea id="json" name="json" rows="10" cols="60" readonly="readonly"></textarea><br /><br />
+
+            <input type="submit" value="Convert" /> <input type="reset" />
+        </form>
+    </body>
+</html>

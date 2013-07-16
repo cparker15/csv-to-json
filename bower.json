@@ -1,0 +1,13 @@
+{
+  "name": "csv-to-json",
+  "version": "0.2.2",
+  "dependencies": {
+    "csv-js": "git://github.com/cparker15/CSV-js.git",
+    "json2": "latest"
+  },
+  "ignore": [
+    "node_modules",
+    "components",
+    "bower_components"
+  ]
+}

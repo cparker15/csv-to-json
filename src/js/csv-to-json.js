@@ -38,8 +38,8 @@
 
     window.onload = function () {
         document.getElementById('convertForm').onsubmit = function () {
-            var csvField  = this.elements['csv'],
-                jsonField = this.elements['json'],
+            var csvField  = this.elements.csv,
+                jsonField = this.elements.json,
                 csvText   = csvField.value,
                 csvObjects, jsonText;
 

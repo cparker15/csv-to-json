@@ -1,0 +1,29 @@
+{
+  "name": "csv-to-json",
+  "version": "0.2.2",
+  "description": "A CSV-to-JSON data format converter.",
+  "homepage": "http://www.cparker15.com/code/utils/csv-to-json/",
+  "bugs": "https://github.com/cparker15/csv-to-json/issues",
+  "author": "Christopher Parker <cparker15@cparker15.com> (http://www.cparker15.com)",
+  "contributors": [
+    "Christopher Parker <cparker15@cparker15.com> (http://www.cparker15.com)",
+    "Joel Truher (https://github.com/truher)"
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-shell": "~0.3.1",
+    "grunt-bower-task": "~0.2.3",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.4.1"
+  },
+  "keywords": [
+    "csv",
+    "json",
+    "converter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cparker15/csv-to-json.git"
+  }
+}

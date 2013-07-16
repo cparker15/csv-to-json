@@ -1,0 +1,11 @@
+{
+    "camelcase": true,
+    "immed":     true,
+    "latedef":   true,
+    "newcap":    true,
+    "quotmark":  "single",
+    "trailing":  true,
+
+    "node":  true,
+    "devel": false
+}

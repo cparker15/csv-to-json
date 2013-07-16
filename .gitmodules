@@ -1,6 +1,0 @@
-[submodule "js/csv"]
-	path = js/csv
-	url = git@github.com:cparker15/CSV-js.git
-[submodule "js/json"]
-	path = js/json
-	url = git@github.com:douglascrockford/JSON-js.git

@@ -43,3 +43,7 @@ The final distributable converter resides at `dist/index.html`.
 [github-csv-js-issues]: https://github.com/cparker15/CSV-js/issues
 [github-douglascrockford]: https://github.com/douglascrockford
 [github-json-js]: https://github.com/douglascrockford/JSON-js
+[nodejs]: http://nodejs.org/
+[npmjs]: http://npmjs.org/
+[bower]: http://bower.io/
+[gruntjs]: http://gruntjs.com/

@@ -10,6 +10,6 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[**.{html,css,js,json,jshintrc,bowerrc}]
+[**.{html,css,js,json,jshintrc,bowerrc,yml}]
 indent_style = space
 indent_size = 4
